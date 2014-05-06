@@ -25,7 +25,10 @@ public class UserDS {
             DbHelper.T_KEY,
             DbHelper.T_USERNAME,
             DbHelper.T_PASSWORD,
-            DbHelper.T_ID
+            DbHelper.T_ID,
+            DbHelper.T_LNAME,
+            DbHelper.T_FNAME,
+            DbHelper.T_EMAIL
 
     };
 
@@ -41,6 +44,9 @@ public class UserDS {
         values.put(DbHelper.T_USERNAME,u.getUsername());
         values.put(DbHelper.T_PASSWORD,u.getPassword());
         values.put(DbHelper.T_KEY,u.getKey());
+        values.put(DbHelper.T_FNAME,u.getFname());
+        values.put(DbHelper.T_LNAME,u.getLname());
+        values.put(DbHelper.T_EMAIL,u.getEmail());
 
         long l=database.insert(DbHelper.T_USER,null,values);
         Log.d(TAG , "Create:"+l);
