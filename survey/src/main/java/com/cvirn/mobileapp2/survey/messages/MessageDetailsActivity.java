@@ -3,8 +3,11 @@ package com.cvirn.mobileapp2.survey.messages;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.cvirn.mobileapp2.survey.MainTabedActivity;
@@ -16,7 +19,9 @@ public class MessageDetailsActivity extends Activity {
 
     TextView textFrom;
     TextView textContent;
+    TextView textDetails;
     Intent i;
+    ImageButton back;
 
     private String message_id;
 
@@ -34,10 +39,13 @@ public class MessageDetailsActivity extends Activity {
         setContentView(R.layout.activity_message_details);
         final ActionBar actionBar = getActionBar();
 
-        setTitle("RealImpact");
-        // Set up the action bar.
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setCustomView(R.layout.custom_action_bar);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
+                | ActionBar.DISPLAY_SHOW_HOME);
+        actionBar.setDisplayUseLogoEnabled(false);
+
+        getActionBar().setIcon(
+                new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
         i=getIntent();
         setMessage_id(i.getStringExtra("mid"));
@@ -47,16 +55,25 @@ public class MessageDetailsActivity extends Activity {
     private void initializeUI() {
 
         textFrom=(TextView)findViewById(R.id.textFrom);
-        textContent=(TextView)findViewById(R.id.textViewContent);
+        textContent=(TextView)findViewById(R.id.textContent);
+        textDetails=(TextView)findViewById(R.id.textFromDetails);
+        back=(ImageButton)findViewById(R.id.imageButton);
 
         MessageDS ds=new MessageDS(this);
         ds.open();
 
         Message m=ds.findMessage(getMessage_id());
 
-        textFrom.setText(m.getTitle());
+        textFrom.setText(m.getFrom());
+        textDetails.setText(m.getTitle());
         textContent.setText(m.getBody());
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

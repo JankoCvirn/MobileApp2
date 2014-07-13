@@ -11,6 +11,15 @@ public class Message {
     protected String title;
     private String body;
     private String mid;
+    private String from;
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
 
     public String getMid() {
         return mid;

@@ -6,6 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.cvirn.mobileapp2.survey.messages.MessageFragment;
+import com.cvirn.mobileapp2.survey.poi.PoiFragment;
+import com.cvirn.mobileapp2.survey.search.SearchFragment;
+import com.cvirn.mobileapp2.survey.tasks.TasksFragment;
 
 
 /**
@@ -26,9 +29,18 @@ public class TabsAccountPageAdapter extends FragmentPagerAdapter {
 
             case 0:
 
+                return new PoiFragment();
+
+            case 1:
+
                return new MessageFragment();
 
 
+            case 2:
+
+                return new TasksFragment();
+            case 3:
+                return new SearchFragment();
         }
 
         return null;
@@ -36,6 +48,6 @@ public class TabsAccountPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 1;
+        return 4;
     }
 }

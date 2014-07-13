@@ -16,7 +16,7 @@ import dbhelper.DbHelper;
  */
 public class UserDS {
 
-    private static final String TAG="ProvidersDataSource";
+    private static final String TAG="UserDataSource";
     SQLiteOpenHelper dbhelper;
     SQLiteDatabase database;
 
@@ -28,7 +28,9 @@ public class UserDS {
             DbHelper.T_ID,
             DbHelper.T_LNAME,
             DbHelper.T_FNAME,
-            DbHelper.T_EMAIL
+            DbHelper.T_EMAIL,
+            DbHelper.T_URL,
+            DbHelper.T_ORG
 
     };
 
@@ -47,10 +49,33 @@ public class UserDS {
         values.put(DbHelper.T_FNAME,u.getFname());
         values.put(DbHelper.T_LNAME,u.getLname());
         values.put(DbHelper.T_EMAIL,u.getEmail());
+        values.put(DbHelper.T_URL,u.getUrl());
+        values.put(DbHelper.T_ORG,u.getOrg());
 
         long l=database.insert(DbHelper.T_USER,null,values);
         Log.d(TAG , "Create:"+l);
         return l;
+    }
+
+    public User getUser(){
+
+
+        Cursor cursor=database.query(DbHelper.T_USER,allColumns,null,
+              null,
+                null,null,null);
+
+       cursor.moveToFirst();
+
+        User u=new User();
+
+        u.setUsername(cursor.getString(cursor.getColumnIndex(DbHelper.T_USERNAME)));
+        u.setUrl(cursor.getString(cursor.getColumnIndex(DbHelper.T_URL)));
+        u.setOrg(cursor.getString(cursor.getColumnIndex(DbHelper.T_ORG)));
+        u.setPassword(cursor.getString(cursor.getColumnIndex(DbHelper.T_PASSWORD)));
+
+
+        return u;
+
     }
 
     public boolean checkUser(User u){
@@ -87,7 +112,7 @@ public class UserDS {
 
         Boolean check=false;
 
-        if (count==1){
+        if (cursor.moveToFirst()){
 
             check=true;
         }

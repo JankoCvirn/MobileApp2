@@ -36,7 +36,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         Message m=prcmessages.get(position);
 
         TextView tv = (TextView) view.findViewById(R.id.textMessage);
-        tv.setText(m.getTitle());
+        tv.setText(m.getTitle()+"\n"+m.getFrom());
 
         TextView uid=(TextView)view.findViewById(R.id.textMessageSID);
         uid.setText(m.getMid());

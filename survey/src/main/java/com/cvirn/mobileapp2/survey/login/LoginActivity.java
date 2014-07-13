@@ -1,5 +1,6 @@
 package com.cvirn.mobileapp2.survey.login;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import com.cvirn.mobileapp2.survey.MainTabedActivity;
 import com.cvirn.mobileapp2.survey.R;
+import com.cvirn.mobileapp2.survey.datasources.MessageDS;
+import com.cvirn.mobileapp2.survey.datasources.TaskDS;
 import com.cvirn.mobileapp2.survey.datasources.UserDS;
 import com.cvirn.mobileapp2.survey.model.User;
 
@@ -29,7 +32,14 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         login_counter=0;
-        setTitle("Login");
+        final ActionBar actionBar = getActionBar();
+
+
+        // Set up the action bar.
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.hide();
+        setTitle("");
         initilaizeUI();
     }
 
@@ -73,6 +83,9 @@ public class LoginActivity extends Activity {
 
                     Toast.makeText(LoginActivity.this,"Logon failed 3 times.Deleting user data.",
                             Toast.LENGTH_LONG).show();
+                    deleteuserdata();
+
+                    finish();
 
                 }
 
@@ -82,6 +95,7 @@ public class LoginActivity extends Activity {
                     Intent intent = new Intent(LoginActivity.this, MainTabedActivity.class);
 
                     startActivity(intent);
+                    finish();
 
 
                 }
@@ -97,6 +111,25 @@ public class LoginActivity extends Activity {
         });
 
 
+
+    }
+
+    private void deleteuserdata() {
+
+        UserDS ds=new UserDS(this);
+        ds.open();
+        ds.deleteAll();
+        ds.close();
+
+        MessageDS mds=new MessageDS(this);
+        mds.open();
+        mds.deleteAll();
+        mds.close();
+
+        TaskDS tds=new TaskDS(this);
+        tds.open();
+        tds.deleteAll();
+        tds.close();
 
     }
 

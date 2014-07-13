@@ -1,0 +1,42 @@
+<RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+
+             tools:context="com.cvirn.shorum.account.OrdersFragment"
+             android:background="@android:color/white">
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fastScrollEnabled="true"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+
+        android:id="@id/android:list"
+        android:layout_marginTop="36dp"
+        android:divider="@android:color/white"
+        android:dividerHeight="15dp"
+        android:drawSelectorOnTop="true"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@+id/spinner"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/sortby"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="39dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="152dp"/>
+
+</RelativeLayout>

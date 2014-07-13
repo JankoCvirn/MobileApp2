@@ -9,6 +9,42 @@ public class Task {
     protected String poi;
     protected String status;
     protected String due_date;
+    protected String sid;
+    protected String form;
+    protected String form_id;
+    protected String poi_name;
+
+    public String getPoi_name() {
+        return poi_name;
+    }
+
+    public void setPoi_name(String poi_name) {
+        this.poi_name = poi_name;
+    }
+
+    public String getForm_id() {
+        return form_id;
+    }
+
+    public void setForm_id(String form_id) {
+        this.form_id = form_id;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
+    }
 
     public String getId() {
         return id;

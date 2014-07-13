@@ -29,8 +29,21 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_survey</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_survey</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Survey</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:tabWidgetStyle">@style/CustomTabWidget</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
         
         
+    </style>
+
+    <style name="CustomTabWidget" parent="@android:style/Widget.TabWidget">
+        <item name="android:textAppearance">@style/CustomTabWidgetText</item>
+    </style>
+    <style name="CustomTabWidgetText"
+           parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">100sp</item>
+        <item name="android:textColor">#999</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ActionBar.Solid.Survey" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
@@ -55,6 +68,27 @@
 
     <style name="ActionBarTabStyle.Survey" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_survey</item>
+        <item name="android:textSize">100sp</item>
+        <item name="android:textColor">#999</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="MyActionBarTitleText"
+           parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#FFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ActionBar tabs text styles -->
+    <style name="MyActionBarTabText"
+           parent="@android:style/Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">#FFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="DropDownNav.Survey" parent="@android:style/Widget.Holo.Light.Spinner">
@@ -76,5 +110,230 @@
         <item name="android:popupMenuStyle">@style/PopupMenu.Survey</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Survey</item>
     </style>
+
+    <!-- Labels -->
+    <style name="Labels" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">60dp</item>
+
+    </style>
+
+    <style name="LabelsPOI" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">100dp</item>
+
+    </style>
+    <style name="TextPOI" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+
+
+    </style>
+    <style name="NewPOI" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">220dp</item>
+
+
+    </style>
+
+    <style name="AboutLabel" parent="android:TextAppearance.Small">
+
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">200dp</item>
+
+    </style>
+    <style name="AboutText" parent="android:TextAppearance.Small">
+
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">200dp</item>
+
+    </style>
+    <style name="LabelsMessage" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">60dp</item>
+
+    </style>
+    <style name="LabelsMessageContent" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+
+
+    </style>
+    <style name="LabelsMessageFrom" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">left</item>
+
+
+    </style>
+    
+    <style name="layoutBackground">
+
+        <item name="android:background">#f68d1e</item>
+
+    </style>
+
+    <style name="InputText" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/rounded_corner</item>
+        <item name="android:layout_margin">10dp</item>
+
+    </style>
+    <style name="CheckSearch" parent="android:Widget.Holo.Light.CompoundButton.CheckBox">
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+
+        <item name="android:layout_height">40dp</item>
+
+        <item name="android:layout_margin">10dp</item>
+
+    </style>
+    <style name="InputSearch" parent="android:TextAppearance.Medium">
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/rounded_corner_scan</item>
+        <item name="android:layout_margin">10dp</item>
+
+    </style>
+    <style name="InputTextScan" parent="android:TextAppearance.Medium">
+
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/rounded_corner_scan</item>
+
+
+    </style>
+
+    <style name="Divider" >
+
+        <item name="android:width">2dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+
+    </style>
+
+    <style name="btnStyleLogin" parent="@android:style/Widget.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.6</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:padding">10dip</item>
+        <item name="android:width">120dp</item>
+        <item name="android:height">50dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="btnStyleStartSurvey" parent="@android:style/Widget.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.6</item>
+        <item name="android:background">@drawable/button2</item>
+        <item name="android:padding">10dip</item>
+        <item name="android:width">120dp</item>
+        <item name="android:layout_margin">5dp</item>
+
+    </style>
+
+    <style name="btnStyleSurvey" parent="@android:style/Widget.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#f68d1e</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.6</item>
+        <item name="android:background">@drawable/survey</item>
+        <item name="android:padding">10dip</item>
+        <item name="android:width">120dp</item>
+        <item name="android:height">50dp</item>
+
+    </style>
+
+    <style name="btnStyleNewPOI" parent="@android:style/Widget.Button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#f68d1e</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.6</item>
+        <item name="android:background">@drawable/survey</item>
+        <item name="android:padding">10dip</item>
+        <item name="android:width">250dp</item>
+        <item name="android:height">50dp</item>
+
+    </style>
+
+    <style name="firstconnection"  parent="android:TextAppearance.Medium" >
+
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left</item>
+        <item name="android:width">200dp</item>
+
+
+    </style>
+
 
 </resources>

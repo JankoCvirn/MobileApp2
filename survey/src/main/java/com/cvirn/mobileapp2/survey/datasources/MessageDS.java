@@ -28,7 +28,8 @@ public class MessageDS {
             DbHelper.M_STATUS,
             DbHelper.M_TITLE,
             DbHelper.M_BODY,
-            DbHelper.M_SID
+            DbHelper.M_SID,
+            DbHelper.M_FROM
 
     };
 
@@ -45,6 +46,7 @@ public class MessageDS {
         values.put(DbHelper.M_SID, m.getMid());
         values.put(DbHelper.M_TITLE, m.getTitle());
         values.put(DbHelper.M_STATUS,m.getStatus());
+        values.put(DbHelper.M_FROM,m.getFrom());
 
         long l=database.insert(DbHelper.T_MESSAGE,null,values);
         Log.d(TAG , "Create message:"+l);
@@ -64,12 +66,34 @@ public class MessageDS {
             m.setBody(cursor.getString(cursor.getColumnIndex(DbHelper.M_BODY)));
             m.setTitle(cursor.getString(cursor.getColumnIndex(DbHelper.M_TITLE)));
             m.setStatus(cursor.getString(cursor.getColumnIndex(DbHelper.M_STATUS)));
+            m.setFrom(cursor.getString(cursor.getColumnIndex(DbHelper.M_FROM)));
             holder.add(m);
 
         }
 
 
         return holder;
+
+
+
+
+    }
+
+    public int countMessages(){
+
+
+        int i=0;
+
+        Cursor cursor=database.query(DbHelper.T_MESSAGE,allColumns,null,null,null,null,null);
+
+        if (cursor!=null){
+
+            i=cursor.getCount();
+
+        }
+
+
+        return i;
 
 
 
@@ -92,6 +116,7 @@ public class MessageDS {
             m.setBody(cursor.getString(cursor.getColumnIndex(DbHelper.M_BODY)));
             m.setTitle(cursor.getString(cursor.getColumnIndex(DbHelper.M_TITLE)));
             m.setStatus(cursor.getString(cursor.getColumnIndex(DbHelper.M_STATUS)));
+            m.setFrom(cursor.getString(cursor.getColumnIndex(DbHelper.M_FROM)));
 
         }
 

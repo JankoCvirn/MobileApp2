@@ -4,20 +4,23 @@
     android:layout_height="match_parent"
 
     tools:context="com.cvirn.shorum.account.OrdersFragment"
-    android:background="@android:color/holo_orange_dark">
+    android:background="@android:color/white">
 
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fastScrollEnabled="true"
-            android:headerDividersEnabled="true"
-            android:footerDividersEnabled="true"
-            android:layout_margin="10dp"
-            android:id="@id/android:list"
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fastScrollEnabled="true"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
 
-            android:divider="@android:color/white"
-            android:dividerHeight="1dp"
-            android:drawSelectorOnTop="true"/>
+        android:id="@id/android:list"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:divider="@android:color/white"
+        android:dividerHeight="15dp"
+        android:drawSelectorOnTop="true"
+        android:layout_gravity="center_horizontal|top"/>
 
 </FrameLayout>

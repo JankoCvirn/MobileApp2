@@ -11,6 +11,24 @@ public class User {
     protected String fname;
     protected String lname;
     protected String email;
+    protected String url;
+    protected String org;
+
+    public String getOrg() {
+        return org;
+    }
+
+    public void setOrg(String org) {
+        this.org = org;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getFname() {
         return fname;

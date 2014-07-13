@@ -1,24 +1,55 @@
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    compileSdkVersion 18
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.5"
+    }
+    signingConfigs {
+        janko {
+            keyPassword 'mdke23122921a'
+            storeFile file('/home/janko/AndroidKeystore/keyAndroid')
+            storePassword 'mdke23122921a'
+            keyAlias "jankoandroid"
+
+        }
+
+        myCustomDebug
+                {
+                    keyPassword 'mdke23122921a'
+                    storeFile file('/home/janko/AndroidKeystore/keyAndroid')
+                    storePassword 'mdke23122921a'
+                    keyAlias "jankoandroid"
+                }
     }
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+        debug {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.myCustomDebug
+
+        }
     }
+
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/commons-io-2.4.jar')
     compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.google.android.gms:play-services:4.2.42'
+    compile 'com.android.support:support-v4:19.0.0'
+    compile files('libs/scanditsdk-barcodepicker-android-4.0.1.jar')
 }
+
+
