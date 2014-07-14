@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.cvirn.mobileapp2.survey.model.CheckIn;
 import com.cvirn.mobileapp2.survey.model.POI;
+import com.cvirn.mobileapp2.survey.model.Task;
 import com.cvirn.mobileapp2.survey.model.User;
 
 import org.apache.http.HttpEntity;
@@ -406,7 +407,7 @@ public class ApiRequest {
                     "}\n" +
                     "}";
 
-            writeToSDFile(payLoad);
+            //writeToSDFile(payLoad);
             pairs.add(new BasicNameValuePair(ACTION_CHECKIN,payLoad ));
             //pairs.add(new BasicNameValuePair("password", getProfile().getPassword()));
             Log.d("Sending JSON",payLoad);
@@ -435,6 +436,73 @@ public class ApiRequest {
 
 
     }
+
+    public String declineTask(Task t){
+
+        /*
+            {"method": "declineTask", "param":
+                {
+                "TaskID": 1
+                }
+            }
+        */
+
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost(
+                getUser().getUrl()
+        );
+        String json = "empty";
+        try {
+
+            //Set bacis auth. paramaeters
+            String base64EncodedCredentials = "Basic " + Base64.encodeToString(
+                    (getUser().getUsername() + ":" + getUser().getPassword()).getBytes(),
+                    Base64.NO_WRAP);
+            //set credentials
+            httppost.setHeader("Authorization", base64EncodedCredentials);
+
+            // Add data to your post
+            List<NameValuePair> pairs = new ArrayList<NameValuePair>(2);
+            //user data
+            String payLoad="{\n" +
+                    "\"method\":\"declineTask\",\n" +
+                    "\"param\":{\n" +
+                               "\"TaskID\":"+t.getSid()+"\n" +
+                              "}\n" +
+                    "}";
+
+            //writeToSDFile(payLoad);
+            pairs.add(new BasicNameValuePair(ACTION_CHECKIN,payLoad ));
+            //pairs.add(new BasicNameValuePair("password", getProfile().getPassword()));
+            Log.d("Sending JSON",payLoad);
+            //action
+            pairs.add(new BasicNameValuePair("action",ACTION_LOGIN ));
+            httppost.setEntity(new UrlEncodedFormEntity(pairs));
+
+            // Finally, execute the request
+            HttpResponse webServerAnswer = httpclient.execute(httppost);
+
+            HttpEntity httpEntity = webServerAnswer.getEntity();
+
+            if (httpEntity != null) {
+
+                json = EntityUtils.toString(httpEntity);
+                Log.d("JSON", json);
+            }
+
+        } catch (ClientProtocolException e) {
+            // Deal with it
+        } catch (IOException e) {
+            // Deal with it
+        }
+
+        return json;
+
+
+    }
+
+
 
     private void writeToSDFile(String payload){
 

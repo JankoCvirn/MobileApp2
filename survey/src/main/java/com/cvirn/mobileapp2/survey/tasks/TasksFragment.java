@@ -2,12 +2,15 @@ package com.cvirn.mobileapp2.survey.tasks;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +24,10 @@ import android.widget.TextView;
 import com.cvirn.mobileapp2.survey.R;
 import com.cvirn.mobileapp2.survey.adapters.TaskAdapter;
 import com.cvirn.mobileapp2.survey.datasources.TaskDS;
+import com.cvirn.mobileapp2.survey.datasources.UserDS;
 import com.cvirn.mobileapp2.survey.model.Task;
+import com.cvirn.mobileapp2.survey.model.User;
+import com.cvirn.mobileapp2.survey.requests.ApiRequest;
 import com.cvirn.mobileapp2.survey.survey.MainSurveyActivity;
 
 import java.util.List;
@@ -33,8 +39,12 @@ public class TasksFragment extends ListFragment {
 
     private static final String TAG ="TaskFragment" ;
     TaskDS idsource;
+    UserDS usersource;
+    User u;
     SharedPreferences preferences;
     Spinner spnSort;
+    private Task t;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,6 +106,13 @@ public class TasksFragment extends ListFragment {
         idsource=new TaskDS(getActivity());
         idsource.open();
 
+        usersource=new UserDS(getActivity());
+        usersource.open();
+        u=usersource.getUser();
+        usersource.close();
+
+
+
 
     }
 
@@ -104,7 +121,51 @@ public class TasksFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         final View arg=v;
-        String cid=""
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String cid=""
+                        + ((TextView) ((LinearLayout) arg).getChildAt(0))
+                        .getText().toString();
+
+
+                String sid=""
+                        + ((TextView) ((LinearLayout) arg).getChildAt(4))
+                        .getText().toString();
+                String poi_id=""
+                        + ((TextView) ((LinearLayout) arg).getChildAt(3))
+                        .getText().toString();
+
+
+
+                //Log.d(TAG, cid);
+                Intent intent = new Intent(getActivity(), MainSurveyActivity.class);
+                intent.putExtra("sid", sid);
+                intent.putExtra("poi_id",poi_id);
+                startActivity(intent);
+            }
+        });
+
+        v.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+
+                t=new Task();
+                //Task systemID
+                String sid=""
+                        + ((TextView) ((LinearLayout) arg).getChildAt(4))
+                        .getText().toString();
+
+                Log.d(TAG,"Long Click on TaskID:"+sid);
+                t.setSid(sid);
+                new DeclineTask().execute("");
+
+                return false;
+            }
+        });
+        /*String cid=""
                 + ((TextView) ((LinearLayout) arg).getChildAt(0))
                 .getText().toString();
 
@@ -122,8 +183,12 @@ public class TasksFragment extends ListFragment {
         Intent intent = new Intent(getActivity(), MainSurveyActivity.class);
         intent.putExtra("sid", sid);
         intent.putExtra("poi_id",poi_id);
-        startActivity(intent);
+        startActivity(intent);*/
     }
+
+
+
+
 
     private void populateUI(){
 
@@ -174,6 +239,29 @@ public class TasksFragment extends ListFragment {
         alertDialog.show();
 
 
+    }
+
+    class DeclineTask extends AsyncTask<String,String,String>{
+
+        ProgressDialog dialog = ProgressDialog.show(getActivity(),
+                getString(R.string.task_decline_title), getString(R.string.please_wait), true);
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            ApiRequest qpi=new ApiRequest();
+            qpi.setUser(u);
+            String result=qpi.declineTask(t);
+            Log.d(TAG,"Decline result:"+result);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            dialog.dismiss();
+        }
     }
 
 

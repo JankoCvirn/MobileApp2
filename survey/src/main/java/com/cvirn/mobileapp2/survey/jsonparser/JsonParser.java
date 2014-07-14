@@ -134,6 +134,7 @@ public class JsonParser {
                 //String form = oneObject.getString("Form");
 
                 //****///
+                String id = oneObject.getString("ID");
 
                  JSONObject formObject=oneObject.getJSONObject("Form");
                  String form_name=formObject.getString("Name");
@@ -158,7 +159,7 @@ public class JsonParser {
 
 
                 String poi = poidetails.getString("ID");
-                String id = poidetails.getString("ID");
+
                 String poi_name=poidetails.getString("Name");
 
 
